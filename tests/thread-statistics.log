@@ -1,0 +1,20 @@
+ID: 0x[0-9a-fA-F]+
+Name: main
+State: \d+
+Priority: \d+
+Stack Size: \d+
+Stack Space: \d+
+
+ID: 0x[0-9a-fA-F]+
+Name: rtx_idle
+State: \d+
+Priority: \d+
+Stack Size: \d+
+Stack Space: \d+
+
+ID: 0x[0-9a-fA-F]+
+Name: rtx_timer
+State: \d+
+Priority: \d+
+Stack Size: \d+
+Stack Space: \d+
