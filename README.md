@@ -1,59 +1,94 @@
-# Getting started with thread statistics on Mbed OS
+![](./resources/official_armmbed_example_badge.png)
+# Thread Statistics Mbed OS Example
 
-This guide reviews the steps required to get thread statistics on Mbed OS platform.
+This guide reviews the steps required to get thread statistics on an Mbed OS enabled platform.
 
-Please install [mbed CLI](https://github.com/ARMmbed/mbed-cli#installing-mbed-cli).
+You can build this project with all supported [Mbed OS build tools](https://os.mbed.com/docs/mbed-os/latest/tools/index.html). However, this example project specifically refers to the command-line interface tool [Arm Mbed CLI](https://github.com/ARMmbed/mbed-cli#installing-mbed-cli).
 
-## Import the example application
+## Application functionality
 
-From the command-line, import the example:
+The `main()` function outputs on the serial interface about a maximum of 8 threads information like `id`, `name`, `state`, `priority`, `stack_space`, `stack_size`.
+
+## Preqrequisites
+
+1. [Install Mbed CLI](https://os.mbed.com/docs/mbed-os/latest/tools/installation-and-setup.html).
+1. Determine which toolchain supports your target.
+
+   Depending on the target, you can build the example project with the GCC_ARM, ARM or IAR toolchain. To learn which toolchain supports your target, run this command:
+
+   ```bash
+   $ mbed compile -S
+   ```
+
+1. Clone this repository on your system.
+1. Change the current directory to where the project was cloned.
+
+## Building and running
+
+1. Connect a USB cable between the USB port on the target and the host computer.
+1. Run this command to build the example project and program the microcontroller flash memory:
+
+    ```bash
+    $ mbed compile -m <TARGET> -t <TOOLCHAIN> --flash --sterm
+    ```
+
+(Note: You can use the Mbed CLI command-line option "--sterm" to open a serial terminal after flashing.)
+
+Your PC may take a few minutes to compile your code.
+
+The binary is located at `./BUILD/<TARGET>/<TOOLCHAIN>/mbed-os-example-thread-statistics.bin`.
+
+Alternatively, you can manually copy the binary to the target, which gets mounted on the host computer through USB.
+
+## Expected output
+
+The serial terminal shows an output similar to the following:
 
 ```
-mbed import mbed-os-example-thread-statistics
-cd mbed-os-example-thread-statistics
+--- Terminal on /dev/ttyACM0 - 9600,8,N,1 ---
+ID: 0x20000e08 
+kName: main 
+State: 2 
+Priority: 24 
+Stack Size: 4096 
+Stack Space: 3944 
+
+ID: 0x20000f58 
+Name: rtx_idle 
+State: 1 
+Priority: 1 
+Stack Size: 512 
+Stack Space: 448 
+
+ID: 0x20000f14 
+Name: rtx_timer 
+State: 3 
+Priority: 40 
+Stack Size: 768 
+Stack Space: 664
 ```
-
-### Now compile
-
-Invoke `mbed compile`, and specify the name of your platform and your favorite toolchain (`GCC_ARM`, `ARM`, `IAR`). For example, for the ARM Compiler 5:
+The information below shows how to interpret the above fields:
 
 ```
-mbed compile -m K64F -t ARM
+ID:            Thread id
+Name:          Thread name
+State:         Thread state
+Priority:      Thread priority (higher number indicates higher priority)
+Stack Size:    Current number of bytes reserved for the stack
+Stack Space:   Current number of free bytes remaining on the stack
 ```
+## Troubleshooting 
+If you have problems, you can review the [documentation](https://os.mbed.com/docs/latest/tutorials/debugging.html) for suggestions on what could be wrong and how to fix it. 
 
-Your PC may take a few minutes to compile your code. At the end, you see the following result:
+## Related links
 
-```
-[snip]
-Elf2Bin: mbed-os-example-thread-statistics
-+------------------+-------+-------+------+
-| Module           | .text | .data | .bss |
-+------------------+-------+-------+------+
-| [lib]\c_w.l      | 11473 |    16 |  348 |
-| [lib]\cpprt_w.l  |    36 |     0 |    0 |
-| [lib]\fz_wm.l    |    18 |     0 |    0 |
-| [lib]\m_wm.l     |    48 |     0 |    0 |
-| anon$$obj.o      |    32 |     0 | 1024 |
-| main.o           |   196 |     0 |    0 |
-| mbed-os\drivers  |   130 |     0 |    0 |
-| mbed-os\features |   132 |     0 |  304 |
-| mbed-os\hal      |  1660 |    30 |   64 |
-| mbed-os\platform |  3657 |   104 |  604 |
-| mbed-os\rtos     | 13822 |  2310 | 4592 |
-| mbed-os\targets  |  9193 |   104 |  324 |
-| Subtotals        | 40397 |  2564 | 7260 |
-+------------------+-------+-------+------+
-Total Static RAM memory (data + bss): 9824 bytes
-Total Flash memory (text + data): 42961 bytes
-```
-
-### Program your board
-
-1. Connect your Mbed device to the computer over USB.
-1. Copy the binary file to the Mbed device.
-1. Press the reset button to start the program.
+* [Mbed OS Stats API](https://os.mbed.com/docs/latest/apis/mbed-statistics.html).
+* [Mbed OS configuration](https://os.mbed.com/docs/latest/reference/configuration.html).
+* [Mbed OS serial communication](https://os.mbed.com/docs/latest/tutorials/serial-communication.html).
+* [Mbed boards](https://os.mbed.com/platforms/).
 
 ### License and contributions
-The software is provided under Apache-2.0 license. Contributions to this project are accepted under the same license. Please see contributing.md for more info.
 
-This project contains code from other projects. The original license text is included in those source files. They must comply with our license guide
+The software is provided under the Apache-2.0 license. Contributions to this project are accepted under the same license. Please see contributing.md for more info.
+
+This project contains code from other projects. The original license text is included in those source files. They must comply with our license guide.
