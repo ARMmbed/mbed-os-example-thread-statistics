@@ -7,7 +7,7 @@ You can build this project with all supported [Mbed OS build tools](https://os.m
 
 ## Application functionality
 
-The `main()` function outputs on the serial interface about a maximum of 8 threads information like `id`, `name`, `state`, `priority`, `stack_space`, `stack_size`.
+The `main()` function starts two threads `blinky_thread` and `idle_thread`. It also outputs on the serial interface thread information such as `id`, `name`, `state`, `priority`, `stack_space`, `stack_size`.
 
 ## Preqrequisites
 
@@ -46,21 +46,35 @@ The serial terminal shows an output similar to the following:
 
 ```
 --- Terminal on /dev/ttyACM0 - 9600,8,N,1 ---
-ID: 0x20000e08 
-kName: main 
+ID: 0x20000e10 
+Name: main 
 State: 2 
 Priority: 24 
 Stack Size: 4096 
-Stack Space: 3944 
+Stack Space: 3888 
 
-ID: 0x20000f58 
+ID: 0x1fff0648 
+Name: blinky_thread 
+State: 1 
+Priority: 24 
+Stack Size: 224 
+Stack Space: 160 
+
+ID: 0x1fff07f8 
+Name: idle_thread 
+State: 1 
+Priority: 24 
+Stack Size: 224 
+Stack Space: 160 
+
+ID: 0x20000f60 
 Name: rtx_idle 
 State: 1 
 Priority: 1 
 Stack Size: 512 
 Stack Space: 448 
 
-ID: 0x20000f14 
+ID: 0x20000f1c 
 Name: rtx_timer 
 State: 3 
 Priority: 40 
@@ -72,7 +86,7 @@ The information below shows how to interpret the above fields:
 ```
 ID:            Thread id
 Name:          Thread name
-State:         Thread state
+State:         Thread states: `1` - Ready, `2` - Running, `3` - Waiting for delay to occur
 Priority:      Thread priority (higher number indicates higher priority)
 Stack Size:    Current number of bytes reserved for the stack
 Stack Space:   Current number of free bytes remaining on the stack
@@ -89,6 +103,6 @@ If you have problems, you can review the [documentation](https://os.mbed.com/doc
 
 ### License and contributions
 
-The software is provided under the Apache-2.0 license. Contributions to this project are accepted under the same license. Please see contributing.md for more info.
+The software is provided under the Apache-2.0 license. Contributions to this project are accepted under the same license. Please see contributing.md for more information.
 
 This project contains code from other projects. The original license text is included in those source files. They must comply with our license guide.

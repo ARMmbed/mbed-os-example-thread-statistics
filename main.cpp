@@ -21,12 +21,44 @@
 #endif
  
 #define MAX_THREAD_STATS    0x8
- 
+
+// Initialise the digital pin LED1 as an output
+DigitalOut led1(LED1);
+
+#define MAX_THREAD_STACK 224
+
+int32_t wait_time_ms = 5000;
+
+void blinky()
+{
+    volatile uint64_t i = ~0;
+    while(i--) {
+        led1 = !led1;
+        thread_sleep_for(wait_time_ms);
+    }
+}
+
+void idle()
+{
+    volatile uint64_t i = ~0;    
+    while(i--) { 
+        thread_sleep_for(wait_time_ms);
+    }
+}
+
 int main()
 {
+    Thread *blinky_thread,
+           *idle_thread;    
     mbed_stats_thread_t *stats = new mbed_stats_thread_t[MAX_THREAD_STATS];
-    int count = mbed_stats_thread_get_each(stats, MAX_THREAD_STATS);
     
+    blinky_thread = new Thread(osPriorityNormal, MAX_THREAD_STACK, nullptr, "blinky_thread");
+    blinky_thread->start(blinky);
+
+    idle_thread = new Thread(osPriorityNormal, MAX_THREAD_STACK, nullptr, "idle_thread");
+    idle_thread->start(idle);
+
+    int count = mbed_stats_thread_get_each(stats, MAX_THREAD_STATS);
     for(int i = 0; i < count; i++) {
         printf("ID: 0x%x \n", stats[i].id);
         printf("Name: %s \n", stats[i].name);
@@ -36,5 +68,8 @@ int main()
         printf("Stack Space: %d \n", stats[i].stack_space);
         printf("\n");
     }
+   
+    blinky_thread->terminate();
+    idle_thread->terminate();    
     return 0;
 }
