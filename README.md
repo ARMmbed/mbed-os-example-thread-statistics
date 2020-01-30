@@ -46,47 +46,53 @@ The serial terminal shows an output similar to the following:
 
 ```
 --- Terminal on /dev/ttyACM0 - 9600,8,N,1 ---
-ID: 0x20000e10 
+ID: 0x20000e20 
 Name: main 
 State: 2 
 Priority: 24 
 Stack Size: 4096 
-Stack Space: 3888 
+Stack Space: 3896 
 
-ID: 0x1fff0648 
-Name: blinky_thread 
-State: 1 
-Priority: 24 
-Stack Size: 224 
-Stack Space: 160 
-
-ID: 0x1fff07f8 
-Name: idle_thread 
-State: 1 
-Priority: 24 
-Stack Size: 224 
-Stack Space: 160 
-
-ID: 0x20000f60 
+ID: 0x20000f70 
 Name: rtx_idle 
 State: 1 
 Priority: 1 
 Stack Size: 512 
-Stack Space: 448 
+Stack Space: 256 
 
-ID: 0x20000f1c 
+ID: 0x1fff0580 
+Name: blinky_thread 
+State: 3 
+Priority: 24 
+Stack Size: 224 
+Stack Space: 128 
+
+ID: 0x20000f2c 
 Name: rtx_timer 
 State: 3 
 Priority: 40 
 Stack Size: 768 
-Stack Space: 664
+Stack Space: 664 
+
+ID: 0x1fff0730 
+Name: idle_thread 
+State: 3 
+Priority: 24 
+Stack Size: 384 
+Stack Space: 280 
 ```
 The information below shows how to interpret the above fields:
 
 ```
 ID:            Thread id
 Name:          Thread name
-State:         Thread states: `1` - Ready, `2` - Running, `3` - Waiting for delay to occur
+State:         Thread states:
+               osThreadInactive   =  0,
+               osThreadReady      =  1,
+               osThreadRunning    =  2,
+               osThreadBlocked    =  3,
+               osThreadTerminated =  4,
+               osThreadError      = -1             
 Priority:      Thread priority (higher number indicates higher priority)
 Stack Size:    Current number of bytes reserved for the stack
 Stack Space:   Current number of free bytes remaining on the stack
