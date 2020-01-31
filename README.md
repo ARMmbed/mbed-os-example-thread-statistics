@@ -87,12 +87,12 @@ The information below shows how to interpret the above fields:
 ID:            Thread id
 Name:          Thread name
 State:         Thread states:
-               osThreadInactive   =  0,
-               osThreadReady      =  1,
-               osThreadRunning    =  2,
-               osThreadBlocked    =  3,
-               osThreadTerminated =  4,
-               osThreadError      = -1             
+               0: Inactive,
+               1: Ready,
+               2: Running,
+               3: Blocked,
+               4: Terminated,
+              -1: Error             
 Priority:      Thread priority (higher number indicates higher priority)
 Stack Size:    Current number of bytes reserved for the stack
 Stack Space:   Current number of free bytes remaining on the stack

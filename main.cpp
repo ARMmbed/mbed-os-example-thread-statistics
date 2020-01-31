@@ -21,14 +21,14 @@
 #endif
  
 #define MAX_THREAD_STATS    0x8
-
-// Initialise the digital pin LED1 as an output
-DigitalOut led1(LED1);
-static EventFlags idle_ef;
 #define BLINKY_THREAD_STACK 224
 #define IDLE_THREAD_STACK 384
 #define STOP_FLAG 0xEF
 #define WAIT_TIME_MS 500
+
+// Initialise the digital pin LED1 as an output
+DigitalOut led1(LED1);
+static EventFlags idle_ef;
 
 void blinky()
 {
