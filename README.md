@@ -1,5 +1,5 @@
 ![](./resources/official_armmbed_example_badge.png)
-# Thread Statistics Mbed OS Example
+# Thread statistics Mbed OS example
 
 This guide reviews the steps required to get thread statistics on an Mbed OS enabled platform.
 
@@ -7,7 +7,7 @@ You can build this project with all supported [Mbed OS build tools](https://os.m
 
 ## Application functionality
 
-The `main()` function starts two threads `blinky_thread` and `idle_thread`. It also outputs on the serial interface thread information such as `id`, `name`, `state`, `priority`, `stack_space`, `stack_size`.
+The `main()` function starts two threads: `blinky_thread` and `idle_thread`. It also outputs information such as `id`, `name`, `state`, `priority`, `stack_space` and `stack_size` on the serial interface thread .
 
 ## Preqrequisites
 
@@ -42,7 +42,7 @@ Alternatively, you can manually copy the binary to the target, which gets mounte
 
 ## Expected output
 
-The serial terminal shows an output similar to the following:
+The serial terminal shows an output similar to:
 
 ```
 --- Terminal on /dev/ttyACM0 - 9600,8,N,1 ---
@@ -81,6 +81,7 @@ Priority: 24
 Stack Size: 384 
 Stack Space: 280 
 ```
+
 The information below shows how to interpret the above fields:
 
 ```
@@ -97,15 +98,17 @@ Priority:      Thread priority (higher number indicates higher priority)
 Stack Size:    Current number of bytes reserved for the stack
 Stack Space:   Current number of free bytes remaining on the stack
 ```
+
 ## Troubleshooting 
+
 If you have problems, you can review the [documentation](https://os.mbed.com/docs/latest/tutorials/debugging.html) for suggestions on what could be wrong and how to fix it. 
 
 ## Related links
 
-* [Mbed OS Stats API](https://os.mbed.com/docs/latest/apis/mbed-statistics.html).
-* [Mbed OS configuration](https://os.mbed.com/docs/latest/reference/configuration.html).
-* [Mbed OS serial communication](https://os.mbed.com/docs/latest/tutorials/serial-communication.html).
-* [Mbed boards](https://os.mbed.com/platforms/).
+- [Mbed OS Stats API](https://os.mbed.com/docs/latest/apis/mbed-statistics.html).
+- [Mbed OS configuration](https://os.mbed.com/docs/latest/reference/configuration.html).
+- [Mbed OS serial communication](https://os.mbed.com/docs/latest/tutorials/serial-communication.html).
+- [Mbed boards](https://os.mbed.com/platforms/).
 
 ### License and contributions
 
