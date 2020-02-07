@@ -5,23 +5,22 @@ This guide reviews the steps required to get thread statistics on an Mbed OS ena
 
 You can build this project with all supported [Mbed OS build tools](https://os.mbed.com/docs/mbed-os/latest/tools/index.html). However, this example project specifically refers to the command-line interface tool [Arm Mbed CLI](https://github.com/ARMmbed/mbed-cli#installing-mbed-cli).
 
+1. [Install Mbed CLI](https://os.mbed.com/docs/mbed-os/latest/quick-start/offline-with-mbed-cli.html).
+
+1. Clone this repository on your system, and change the current directory to where the project was cloned:
+
+    ```bash
+    $ git clone git@github.com:armmbed/mbed-os-example-thread-statistics && cd mbed-os-example-thread-statistics
+    ```
+
+    Alternatively, you can download the example project with Arm Mbed CLI using the `import` subcommand:
+
+    ```bash
+    $ mbed import mbed-os-example-thread-statistics && cd mbed-os-example-thread-statistics
+
 ## Application functionality
 
 The `main()` function starts two threads: `blinky_thread` and `idle_thread`. It also outputs information such as `id`, `name`, `state`, `priority`, `stack_space` and `stack_size` on the serial interface thread .
-
-## Preqrequisites
-
-1. [Install Mbed CLI](https://os.mbed.com/docs/mbed-os/latest/tools/installation-and-setup.html).
-1. Determine which toolchain supports your target.
-
-   Depending on the target, you can build the example project with the GCC_ARM, ARM or IAR toolchain. To learn which toolchain supports your target, run this command:
-
-   ```bash
-   $ mbed compile -S
-   ```
-
-1. Clone this repository on your system.
-1. Change the current directory to where the project was cloned.
 
 ## Building and running
 
