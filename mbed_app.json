@@ -1,8 +1,7 @@
 {
-    "macros": ["MBED_THREAD_STATS_ENABLED"],
     "target_overrides": {
         "*": {
-            "platform.stdio-convert-newlines": 1
+            "platform.thread-stats-enabled": true
         }
     }
 }

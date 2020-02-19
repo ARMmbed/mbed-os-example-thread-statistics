@@ -3,20 +3,11 @@
 
 This guide reviews the steps required to get thread statistics on an Mbed OS enabled platform.
 
-You can build this project with all supported [Mbed OS build tools](https://os.mbed.com/docs/mbed-os/latest/tools/index.html). However, this example project specifically refers to the command-line interface tool [Arm Mbed CLI](https://github.com/ARMmbed/mbed-cli#installing-mbed-cli).
+You can build this project with all supported [Mbed OS build tools](https://os.mbed.com/docs/mbed-os/latest/tools/index.html). However, this example project specifically refers to the command-line interface tool [Arm Mbed CLI](https://github.com/ARMmbed/mbed-cli#installing-mbed-cli):
 
-1. [Install Mbed CLI](https://os.mbed.com/docs/mbed-os/latest/quick-start/offline-with-mbed-cli.html).
-
-1. Clone this repository on your system, and change the current directory to where the project was cloned:
-
-    ```bash
-    $ git clone git@github.com:armmbed/mbed-os-example-thread-statistics && cd mbed-os-example-thread-statistics
-    ```
-
-    Alternatively, you can download the example project with Arm Mbed CLI using the `import` subcommand:
-
-    ```bash
-    $ mbed import mbed-os-example-thread-statistics && cd mbed-os-example-thread-statistics
+1. Install Mbed CLI.
+1. Clone this repository on your system.
+1. Change the current directory to where the project was cloned.
 
 ## Application functionality
 
@@ -31,7 +22,7 @@ The `main()` function starts two threads: `blinky_thread` and `idle_thread`. It 
     $ mbed compile -m <TARGET> -t <TOOLCHAIN> --flash --sterm
     ```
 
-(Note: You can use the Mbed CLI command-line option "--sterm" to open a serial terminal after flashing.)
+Note: You can use the Mbed CLI command-line option "--sterm" to open a serial terminal after flashing.
 
 Your PC may take a few minutes to compile your code.
 
@@ -102,6 +93,20 @@ State:         Thread states:
 Priority:      Thread priority (higher number indicates higher priority)
 Stack Size:    Current number of bytes reserved for the stack
 Stack Space:   Current number of free bytes remaining on the stack
+```
+
+## Configuring the application
+
+You can enable thread statistics by setting `platform.thread-stats-enabled` to true in the application configuration file:
+
+```
+{
+    "target_overrides": {
+        "*": {            
+            "platform.thread-stats-enabled": true            
+        }
+    }
+}
 ```
 
 ## Troubleshooting 
