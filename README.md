@@ -1,21 +1,11 @@
 ![](./resources/official_armmbed_example_badge.png)
 # Thread statistics Mbed OS example
 
-The example project is part of the [Arm Mbed OS Official Examples](https://os.mbed.com/code/). It contains an application that demonstrates how to generate thread statistics in Mbed OS.
+This guide reviews the steps required to get thread statistics on an Mbed OS enabled platform.
 
-You can build the project with all supported [Mbed OS build tools](https://os.mbed.com/docs/mbed-os/latest/tools/index.html). However, this example project specifically refers to the command-line interface tools, [Arm Mbed CLI 1](https://github.com/ARMmbed/mbed-cli#installing-mbed-cli) and [Mbed CLI 2](https://github.com/ARMmbed/mbed-tools#installation).
+You can build this project with all supported [Mbed OS build tools](https://os.mbed.com/docs/mbed-os/latest/tools/index.html). However, this example project specifically refers to the command-line interface tool [Arm Mbed CLI](https://github.com/ARMmbed/mbed-cli#installing-mbed-cli):
 
-## Mbed OS build tools
-
-### Mbed CLI 2
-
-Starting with version 6.5, Mbed OS uses Mbed CLI 2. It uses Ninja as a build system, and CMake to generate the build environment and manage the build process in a compiler-independent manner. If you are working with Mbed OS version prior to 6.5 then check the section [Mbed CLI 1](#mbed-cli-1).
-1. [Install Mbed CLI 2](https://os.mbed.com/docs/mbed-os/latest/build-tools/install-or-upgrade.html).
-1. From the command-line, import the example: `mbed-tools import mbed-os-example-thread-statistics`
-1. Change the current directory to where the project was imported.
-
-### Mbed CLI 1
-1. [Install Mbed CLI 1](https://os.mbed.com/docs/mbed-os/latest/quick-start/offline-with-mbed-cli.html).
+1. Install Mbed CLI.
 1. From the command-line, import the example: `mbed import mbed-os-example-thread-statistics`
 1. Change the current directory to where the project was imported.
 
@@ -25,47 +15,25 @@ The `main()` function starts two threads: `blinky_thread` and `idle_thread`. It 
 
 ## Building and running
 
-1. Connect a USB cable between the USB port on the board and the host computer.
-1. Run the following command to build the example project and program the microcontroller flash memory:
-
-    * Mbed CLI 2
-
-    ```bash
-    $ mbed-tools compile -m <TARGET> -t <TOOLCHAIN> --flash --sterm
-    ```
-
-    * Mbed CLI 1
+1. Connect a USB cable between the USB port on the target and the host computer.
+1. Run this command to build the example project and program the microcontroller flash memory:
 
     ```bash
     $ mbed compile -m <TARGET> -t <TOOLCHAIN> --flash --sterm
     ```
 
+Note: You can use the Mbed CLI command-line option "--sterm" to open a serial terminal after flashing.
+
 Your PC may take a few minutes to compile your code.
 
-The binary is located at:
-* **Mbed CLI 2** - `./cmake_build/<TARGET>/<PROFILE>/<TOOLCHAIN>/mbed-os-example-thread-statistics.bin`</br>
-* **Mbed CLI 1** - `./BUILD/<TARGET>/<TOOLCHAIN>/mbed-os-example-thread-statistics.bin`
+The binary is located at `./BUILD/<TARGET>/<TOOLCHAIN>/mbed-os-example-thread-statistics.bin`.
 
-Alternatively, you can manually copy the binary to the board, which you mount on the host computer over USB.
+Alternatively, you can manually copy the binary to the target, which gets mounted on the host computer through USB.
 
 Depending on the target, you can build the example project with the `GCC_ARM`, `ARM` or `IAR` toolchain. After installing Arm Mbed CLI, run the command below to determine which toolchain supports your target:
 
 ```bash
 $ mbed compile -S
-```
-
-You can also open a serial terminal separately, rather than using the `--sterm` option, with the following command:
-
-* Mbed CLI 2
-
-```bash
-$ mbed-tools sterm
-```
-
-* Mbed CLI 1
-
-```bash
-$ mbed sterm
 ```
 
 ## Expected output
